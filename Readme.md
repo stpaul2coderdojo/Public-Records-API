@@ -139,3 +139,102 @@ python
     Finally, create a new API endpoint in the Atlassian Cloud Console that routes requests to the AWS Lambda function using the lambda-proxy integration type.
 
 That's it! You should now be able to make requests to the API endpoint and get responses with the person's information and W2 data.
+
+create what I call a code unit or C.U as a IaC or infrastructure as code JSON definition of the above cloud function and deployment URIs as a JSON as cartesian genome of evolutionary computing. Mint a NFT with this JSON and yaml above
+
+Sure, here's an example IaC definition of the cloud function you described as a JSON file:
+
+json
+
+{
+  "name": "public-record-lookup",
+  "description": "API to lookup public records for a given phone number and return associated W2 information",
+  "runtime": "python3.7",
+  "handler": "app.lookup",
+  "sourceCode": {
+    "s3Bucket": "my-bucket",
+    "s3Key": "public-record-lookup.zip"
+  },
+  "environment": {
+    "PEOPLE_FINDER_API_KEY": "my-api-key",
+    "IRS_API_KEY": "my-api-key"
+  },
+  "memorySize": 128,
+  "timeout": 30,
+  "role": "arn:aws:iam::123456789012:role/LambdaExecutionRole",
+  "vpcConfig": {
+    "subnetIds": ["subnet-12345678"],
+    "securityGroupIds": ["sg-12345678"]
+  }
+}
+
+This JSON definition specifies the name, description, runtime, handler, source code location, environment variables, memory and timeout limits, IAM role, and VPC configuration for the cloud function. You can use this JSON file as the input for an IaC tool like AWS CloudFormation to create and manage the function and its resources in a repeatable and automated way.
+
+As for the NFT, you can mint one using a blockchain platform that supports NFTs, such as Ethereum or Binance Smart Chain. The JSON and YAML files can be stored as metadata associated with the NFT, and the token can be transferred or sold as a representation of the ownership and provenance of the code unit.
+
+
+mint a ETH based NFT with the above JSON and YAML metadata stored on Filecoin and pinned.
+
+Sure, here's an example of how you can mint an ETH-based NFT using the OpenZeppelin SDK and store the metadata on Filecoin:
+
+    Install the OpenZeppelin SDK:
+
+    java
+
+npm install -g @openzeppelin/cli
+
+Create a new project and NFT contract:
+
+perl
+
+oz init my-nft-project
+cd my-nft-project
+oz create
+
+Follow the prompts to create a new project and contract.
+
+Edit the MyNFT.sol contract file to add a function for minting the NFT:
+
+solidity
+
+function mintNFT(string memory tokenURI) public returns (uint256) {
+    _tokenIds.increment();
+    uint256 newTokenId = _tokenIds.current();
+    _safeMint(msg.sender, newTokenId);
+    _setTokenURI(newTokenId, tokenURI);
+    return newTokenId;
+}
+
+This function takes a tokenURI string as input and creates a new NFT with that metadata.
+
+Deploy the contract to the Ethereum network:
+
+oz deploy
+
+Follow the prompts to deploy the contract to the network.
+
+Upload the JSON and YAML metadata to Filecoin and pin it:
+
+You can use a storage service like Textile or Fleek to upload the metadata to Filecoin and pin it for long-term storage. Here's an example using Textile:
+
+perl
+
+npm install -g @textile/cli
+textile login
+textile init
+textile push my-metadata.json
+textile push my-metadata.yaml
+
+This will upload the metadata files to Filecoin and pin them on Textile's IPFS cluster.
+
+Mint a new NFT using the mintNFT function:
+
+You can use a tool like Remix or Truffle to interact with the contract and call the mintNFT function with the URL of the metadata files:
+
+solidity
+
+    MyNFT.mintNFT("https://gateway.textile.io/ipfs/<my-metadata-hash>.json")
+
+    This will create a new NFT with the specified metadata stored on Filecoin and pinned.
+
+Congratulations, you have now minted an ETH-based NFT with JSON and YAML metadata stored on Filecoin!
