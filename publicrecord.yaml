@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: Public Record API
+  description: An API for looking up public records
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /lookup:
+    get:
+      summary: Look up public records by phone number
+      parameters:
+        - in: query
+          name: phone_number
+          schema:
+            type: string
+          required: true
+          description: The phone number to look up
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  address:
+                    type: string
+                  w2:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/W2'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+      x-code-samples:
+        - lang: curl
+          source: curl -X GET "https://api.example.com/v1/lookup?phone_number=123-456-7890" -H "accept: application/json"
+components:
+  schemas:
+    W2:
+      type: object
+      properties:
+        year:
+          type: integer
+        employer:
+          type: string
+        wages:
+          type: number
